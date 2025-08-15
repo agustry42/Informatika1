@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Aplikasi Pengolah Kata - SMK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .quiz-option:hover {
+            transform: translateX(5px);
+            transition: transform 0.2s ease;
+        }
+        .correct-answer {
+            background: linear-gradient(135deg, #10b981, #059669);
+            animation: pulse 0.5s ease-in-out;
+        }
+        .wrong-answer {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-center">📝 Pembelajaran Aplikasi Pengolah Kata</h1>
+            <p class="text-center text-blue-100 mt-2">Tingkat SMK - Informatika</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-center space-x-8 py-4">
+                <button onclick="showPage('materi')" id="btn-materi" class="nav-btn px-6 py-2 rounded-lg font-semibold transition-all duration-300 bg-blue-600 text-white">
+                    📚 Materi
+                </button>
+                <button onclick="showPage('contoh')" id="btn-contoh" class="nav-btn px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-blue-600 hover:bg-blue-50">
+                    💻 Contoh Aplikasi
+                </button>
+                <button onclick="showPage('kuis')" id="btn-kuis" class="nav-btn px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-blue-600 hover:bg-blue-50">
+                    🎯 Kuis
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Halaman Materi -->
+        <div id="page-materi" class="page-content fade-in">
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">📖 Materi Pembelajaran</h2>
+                
+                <!-- Sejarah -->
+                <section class="mb-8">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                        🕰️ Sejarah Aplikasi Pengolah Kata
+                    </h3>
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">1960-an: Awal Mula</h4>
+                                <p class="text-gray-600">Konsep pengolah kata dimulai dengan mesin ketik elektronik yang dapat menyimpan dan mengedit teks.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">1970-an: WordStar</h4>
+                                <p class="text-gray-600">WordStar menjadi salah satu pengolah kata pertama yang populer untuk komputer personal.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">1980-an: Microsoft Word</h4>
+                                <p class="text-gray-600">Microsoft Word diluncurkan dan menjadi standar industri hingga saat ini.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-semibold text-gray-800">2000-an: Era Digital</h4>
+                                <p class="text-gray-600">Munculnya pengolah kata berbasis web seperti Google Docs yang memungkinkan kolaborasi real-time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Definisi -->
+                <section class="mb-8">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-4 flex items-center">
+                        📝 Apa itu Aplikasi Pengolah Kata?
+                    </h3>
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <p class="text-gray-700 text-lg leading-relaxed">
+                            Aplikasi pengolah kata adalah perangkat lunak yang digunakan untuk membuat, mengedit, memformat, dan mencetak dokumen teks. 
+                            Aplikasi ini memungkinkan pengguna untuk menulis dengan berbagai fitur seperti pemformatan teks, penyisipan gambar, 
+                            tabel, dan banyak lagi.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Jenis-jenis -->
+                <section class="mb-8">
+                    <h3 class="text-2xl font-semibold text-purple-700 mb-4 flex items-center">
+                        🔧 Jenis-jenis Aplikasi Pengolah Kata
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-purple-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-800 mb-3">💻 Desktop Application</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• Microsoft Word</li>
+                                <li>• LibreOffice Writer</li>
+                                <li>• Apache OpenOffice Writer</li>
+                                <li>• WPS Office Writer</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-800 mb-3">🌐 Web-based Application</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• Google Docs</li>
+                                <li>• Microsoft Word Online</li>
+                                <li>• Zoho Writer</li>
+                                <li>• Notion</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-800 mb-3">📱 Mobile Application</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• Microsoft Word Mobile</li>
+                                <li>• Google Docs Mobile</li>
+                                <li>• WPS Office Mobile</li>
+                                <li>• Pages (iOS)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-purple-800 mb-3">🆓 Open Source</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• LibreOffice Writer</li>
+                                <li>• Apache OpenOffice</li>
+                                <li>• AbiWord</li>
+                                <li>• OnlyOffice</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fitur Utama -->
+                <section class="mb-8">
+                    <h3 class="text-2xl font-semibold text-orange-700 mb-4 flex items-center">
+                        ⭐ Fitur Utama Aplikasi Pengolah Kata
+                    </h3>
+                    <div class="bg-orange-50 rounded-lg p-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">✏️</div>
+                                <h4 class="font-semibold text-gray-800">Text Editing</h4>
+                                <p class="text-sm text-gray-600">Menulis dan mengedit teks</p>
+                            </div>
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">🎨</div>
+                                <h4 class="font-semibold text-gray-800">Formatting</h4>
+                                <p class="text-sm text-gray-600">Mengatur tampilan teks</p>
+                            </div>
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">🖼️</div>
+                                <h4 class="font-semibold text-gray-800">Insert Media</h4>
+                                <p class="text-sm text-gray-600">Menyisipkan gambar dan objek</p>
+                            </div>
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">📊</div>
+                                <h4 class="font-semibold text-gray-800">Tables & Charts</h4>
+                                <p class="text-sm text-gray-600">Membuat tabel dan grafik</p>
+                            </div>
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">🔍</div>
+                                <h4 class="font-semibold text-gray-800">Find & Replace</h4>
+                                <p class="text-sm text-gray-600">Mencari dan mengganti teks</p>
+                            </div>
+                            <div class="text-center p-4">
+                                <div class="text-3xl mb-2">🖨️</div>
+                                <h4 class="font-semibold text-gray-800">Print & Export</h4>
+                                <p class="text-sm text-gray-600">Mencetak dan ekspor dokumen</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Shortcut Keyboard -->
+                <section>
+                    <h3 class="text-2xl font-semibold text-red-700 mb-4 flex items-center">
+                        ⌨️ Shortcut Keyboard yang Sering Digunakan
+                    </h3>
+                    <div class="bg-red-50 rounded-lg p-6">
+                        <p class="text-gray-700 mb-6 text-center">Shortcut keyboard dapat mempercepat pekerjaan Anda dalam menggunakan aplikasi pengolah kata!</p>
+                        
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <!-- Shortcut Umum -->
+                            <div class="bg-white rounded-lg p-6 border border-red-200">
+                                <h4 class="text-xl font-semibold text-red-800 mb-4 text-center">🔧 Shortcut Umum (MS Word & Google Docs)</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Salin (Copy)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + C</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Potong (Cut)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + X</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Tempel (Paste)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + V</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Batalkan (Undo)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Z</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Ulangi (Redo)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Y</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Pilih Semua</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + A</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Simpan</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + S</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Cetak</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + P</kbd>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shortcut Formatting -->
+                            <div class="bg-white rounded-lg p-6 border border-red-200">
+                                <h4 class="text-xl font-semibold text-red-800 mb-4 text-center">🎨 Shortcut Formatting</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Tebal (Bold)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + B</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Miring (Italic)</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + I</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Garis Bawah</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + U</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Rata Kiri</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + L</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Rata Tengah</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + E</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Rata Kanan</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + R</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Rata Kiri-Kanan</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + J</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                        <span class="text-gray-700">Cari & Ganti</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + H</kbd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shortcut Khusus -->
+                        <div class="mt-8 grid lg:grid-cols-2 gap-8">
+                            <!-- Microsoft Word -->
+                            <div class="bg-blue-100 rounded-lg p-6 border border-blue-300">
+                                <h4 class="text-xl font-semibold text-blue-800 mb-4 text-center flex items-center justify-center">
+                                    <span class="mr-2">📘</span> Khusus Microsoft Word
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Dokumen Baru</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + N</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Buka Dokumen</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + O</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Page Break</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Enter</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Zoom In</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Plus</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Zoom Out</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Minus</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Spelling Check</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">F7</kbd>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Google Docs -->
+                            <div class="bg-green-100 rounded-lg p-6 border border-green-300">
+                                <h4 class="text-xl font-semibold text-green-800 mb-4 text-center flex items-center justify-center">
+                                    <span class="mr-2">📗</span> Khusus Google Docs
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Insert Link</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + K</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Insert Comment</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Alt + M</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Show/Hide Ruler</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Shift + R</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Word Count</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Shift + C</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Voice Typing</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Shift + S</kbd>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded">
+                                        <span class="text-gray-700">Explore</span>
+                                        <kbd class="bg-gray-200 px-2 py-1 rounded text-sm font-mono">Ctrl + Alt + Shift + I</kbd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tips -->
+                        <div class="mt-8 bg-yellow-100 rounded-lg p-6 border border-yellow-300">
+                            <h4 class="text-xl font-semibold text-yellow-800 mb-4 text-center flex items-center justify-center">
+                                <span class="mr-2">💡</span> Tips Menggunakan Shortcut
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-semibold text-gray-800 mb-2">🎯 Mulai dengan yang Dasar</h5>
+                                    <p class="text-sm text-gray-600">Pelajari shortcut dasar seperti Ctrl+C, Ctrl+V, Ctrl+S terlebih dahulu sebelum yang kompleks.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-semibold text-gray-800 mb-2">🔄 Latihan Rutin</h5>
+                                    <p class="text-sm text-gray-600">Gunakan shortcut secara konsisten dalam pekerjaan sehari-hari agar menjadi kebiasaan.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-semibold text-gray-800 mb-2">📝 Buat Catatan</h5>
+                                    <p class="text-sm text-gray-600">Tulis shortcut yang sering digunakan dan tempel di dekat komputer sebagai pengingat.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4">
+                                    <h5 class="font-semibold text-gray-800 mb-2">⚡ Efisiensi Waktu</h5>
+                                    <p class="text-sm text-gray-600">Shortcut dapat menghemat waktu hingga 30% dalam mengedit dokumen!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Halaman Contoh -->
+        <div id="page-contoh" class="page-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">💻 Contoh Model Aplikasi Pengolah Kata</h2>
+                
+                <!-- Interface Aplikasi -->
+                <div class="space-y-12">
+                    <!-- Microsoft Word -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 border border-blue-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mr-6">W</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold text-gray-800">Microsoft Word</h3>
+                                <p class="text-gray-600 text-lg">Desktop & Web Application</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Interface Preview -->
+                        <div class="bg-white rounded-lg shadow-lg mb-6 overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-600 ml-4">Microsoft Word - Document1</span>
+                            </div>
+                            
+                            <!-- Ribbon Menu -->
+                            <div class="bg-blue-600 text-white px-4 py-2">
+                                <div class="flex space-x-6 text-sm">
+                                    <span class="font-semibold">File</span>
+                                    <span class="bg-blue-700 px-2 py-1 rounded">Home</span>
+                                    <span>Insert</span>
+                                    <span>Design</span>
+                                    <span>Layout</span>
+                                    <span>References</span>
+                                    <span>Mailings</span>
+                                    <span>Review</span>
+                                    <span>View</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Toolbar -->
+                            <div class="bg-gray-50 px-4 py-3 border-b flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 bg-white border rounded text-sm">📋</button>
+                                    <button class="px-3 py-1 bg-white border rounded text-sm">✂️</button>
+                                    <button class="px-3 py-1 bg-white border rounded text-sm">📄</button>
+                                </div>
+                                <div class="border-l h-6"></div>
+                                <div class="flex items-center space-x-2">
+                                    <select class="px-2 py-1 border rounded text-sm">
+                                        <option>Calibri</option>
+                                    </select>
+                                    <select class="px-2 py-1 border rounded text-sm">
+                                        <option>11</option>
+                                    </select>
+                                </div>
+                                <div class="border-l h-6"></div>
+                                <div class="flex items-center space-x-1">
+                                    <button class="px-2 py-1 bg-white border rounded text-sm font-bold">B</button>
+                                    <button class="px-2 py-1 bg-white border rounded text-sm italic">I</button>
+                                    <button class="px-2 py-1 bg-white border rounded text-sm underline">U</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Area -->
+                            <div class="p-8 bg-white min-h-64">
+                                <div class="max-w-2xl mx-auto bg-white shadow-sm border p-8">
+                                    <h1 class="text-2xl font-bold mb-4">Contoh Dokumen</h1>
+                                    <p class="text-gray-700 mb-4">
+                                        Ini adalah contoh tampilan dokumen di Microsoft Word. Interface yang familiar dengan ribbon menu di bagian atas memudahkan pengguna untuk mengakses berbagai fitur formatting.
+                                    </p>
+                                    <p class="text-gray-700">
+                                        Microsoft Word menyediakan berbagai template dan fitur canggih untuk membuat dokumen profesional.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Interface yang user-friendly</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Fitur formatting lengkap</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Template dokumen beragam</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Integrasi dengan Office 365</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded border">
+                            <p class="text-sm text-gray-600"><strong>Cocok untuk:</strong> Dokumen profesional, laporan, surat resmi</p>
+                        </div>
+                    </div>
+
+                    <!-- Google Docs -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 border border-green-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mr-6">G</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold text-gray-800">Google Docs</h3>
+                                <p class="text-gray-600 text-lg">Web-based Application</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Interface Preview -->
+                        <div class="bg-white rounded-lg shadow-lg mb-6 overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-8 h-8 bg-green-600 rounded flex items-center justify-center text-white text-sm font-bold">📄</div>
+                                        <span class="text-sm text-gray-700">Dokumen Tanpa Judul</span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Tersimpan di Drive</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm">Bagikan</button>
+                                    <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Toolbar -->
+                            <div class="bg-white px-4 py-3 border-b">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 hover:bg-gray-100 rounded">📋</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded">✂️</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded">📄</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded">🖨️</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded">↶</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded">↷</button>
+                                    </div>
+                                    <div class="border-l h-6"></div>
+                                    <div class="flex items-center space-x-2">
+                                        <select class="px-2 py-1 border rounded text-sm bg-white">
+                                            <option>Normal text</option>
+                                        </select>
+                                        <select class="px-2 py-1 border rounded text-sm bg-white">
+                                            <option>Arial</option>
+                                        </select>
+                                        <select class="px-2 py-1 border rounded text-sm bg-white">
+                                            <option>11</option>
+                                        </select>
+                                    </div>
+                                    <div class="border-l h-6"></div>
+                                    <div class="flex items-center space-x-1">
+                                        <button class="p-2 hover:bg-gray-100 rounded font-bold">B</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded italic">I</button>
+                                        <button class="p-2 hover:bg-gray-100 rounded underline">U</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Area -->
+                            <div class="p-8 bg-gray-50 min-h-64">
+                                <div class="max-w-2xl mx-auto bg-white shadow-sm p-8">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-2 h-6 bg-blue-500 mr-2"></div>
+                                        <h1 class="text-2xl font-bold">Dokumen Kolaboratif</h1>
+                                    </div>
+                                    <p class="text-gray-700 mb-4">
+                                        Google Docs memungkinkan kolaborasi real-time dengan tim. Anda dapat melihat perubahan yang dibuat oleh rekan kerja secara langsung.
+                                    </p>
+                                    <div class="bg-yellow-100 border-l-4 border-yellow-500 p-3 mb-4">
+                                        <p class="text-sm text-gray-700">💬 <strong>Komentar:</strong> "Bagian ini perlu diperbaiki" - John Doe</p>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Fitur auto-save memastikan pekerjaan Anda tidak akan hilang.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Kolaborasi real-time</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Auto-save otomatis</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Akses dari mana saja</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Gratis dengan akun Google</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded border">
+                            <p class="text-sm text-gray-600"><strong>Cocok untuk:</strong> Proyek tim, dokumen kolaboratif, draft cepat</p>
+                        </div>
+                    </div>
+
+                    <!-- LibreOffice Writer -->
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-8 border border-orange-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mr-6">L</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold text-gray-800">LibreOffice Writer</h3>
+                                <p class="text-gray-600 text-lg">Open Source Desktop</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Interface Preview -->
+                        <div class="bg-white rounded-lg shadow-lg mb-6 overflow-hidden">
+                            <div class="bg-gray-200 px-4 py-2 border-b flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-600 ml-4">LibreOffice Writer - Untitled 1</span>
+                            </div>
+                            
+                            <!-- Menu Bar -->
+                            <div class="bg-gray-100 px-4 py-2 border-b">
+                                <div class="flex space-x-6 text-sm text-gray-700">
+                                    <span>File</span>
+                                    <span>Edit</span>
+                                    <span>View</span>
+                                    <span>Insert</span>
+                                    <span>Format</span>
+                                    <span>Styles</span>
+                                    <span>Sheet</span>
+                                    <span>Tools</span>
+                                    <span>Window</span>
+                                    <span>Help</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Toolbar -->
+                            <div class="bg-gray-50 px-4 py-3 border-b">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">📄</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">📁</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">💾</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">🖨️</button>
+                                    </div>
+                                    <div class="border-l h-6"></div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">📋</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">✂️</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100">📄</button>
+                                    </div>
+                                    <div class="border-l h-6"></div>
+                                    <div class="flex items-center space-x-2">
+                                        <select class="px-2 py-1 border rounded text-sm bg-white">
+                                            <option>Liberation Serif</option>
+                                        </select>
+                                        <select class="px-2 py-1 border rounded text-sm bg-white">
+                                            <option>12</option>
+                                        </select>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100 font-bold">B</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100 italic">I</button>
+                                        <button class="p-2 bg-white border rounded hover:bg-gray-100 underline">U</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Area -->
+                            <div class="p-8 bg-white min-h-64">
+                                <div class="max-w-2xl mx-auto bg-white border p-8">
+                                    <h1 class="text-2xl font-bold mb-4">Dokumen LibreOffice Writer</h1>
+                                    <p class="text-gray-700 mb-4">
+                                        LibreOffice Writer adalah alternatif gratis dan open source untuk Microsoft Word. Interface yang familiar memudahkan transisi dari aplikasi pengolah kata lainnya.
+                                    </p>
+                                    <ul class="list-disc list-inside text-gray-700 mb-4">
+                                        <li>Kompatibel dengan format .docx</li>
+                                        <li>Fitur lengkap untuk dokumen profesional</li>
+                                        <li>Tersedia untuk Windows, Mac, dan Linux</li>
+                                    </ul>
+                                    <p class="text-gray-700">
+                                        Cocok untuk pengguna yang membutuhkan aplikasi pengolah kata tanpa biaya lisensi.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Gratis dan open source</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Kompatibel dengan format Word</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Fitur lengkap seperti Word</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Tersedia untuk semua OS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded border">
+                            <p class="text-sm text-gray-600"><strong>Cocok untuk:</strong> Pengguna yang ingin alternatif gratis Microsoft Word</p>
+                        </div>
+                    </div>
+
+                    <!-- Notion -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 border border-purple-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mr-6">N</div>
+                            <div>
+                                <h3 class="text-2xl font-semibold text-gray-800">Notion</h3>
+                                <p class="text-gray-600 text-lg">All-in-one Workspace</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Interface Preview -->
+                        <div class="bg-white rounded-lg shadow-lg mb-6 overflow-hidden">
+                            <div class="bg-gray-100 px-4 py-2 border-b flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-6 h-6 bg-purple-600 rounded"></div>
+                                        <span class="text-sm text-gray-700">My Workspace</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 bg-purple-600 text-white rounded text-sm">Share</button>
+                                    <button class="p-1 hover:bg-gray-200 rounded">⚙️</button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <!-- Sidebar -->
+                                <div class="w-64 bg-gray-50 border-r p-4">
+                                    <div class="space-y-2">
+                                        <div class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded cursor-pointer">
+                                            <span>📄</span>
+                                            <span class="text-sm">Getting Started</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 p-2 bg-purple-100 rounded">
+                                            <span>📝</span>
+                                            <span class="text-sm font-medium">Project Notes</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded cursor-pointer">
+                                            <span>📊</span>
+                                            <span class="text-sm">Database</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 p-2 hover:bg-gray-200 rounded cursor-pointer">
+                                            <span>📅</span>
+                                            <span class="text-sm">Calendar</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Main Content -->
+                                <div class="flex-1 p-8">
+                                    <div class="mb-6">
+                                        <h1 class="text-3xl font-bold mb-2">📝 Project Notes</h1>
+                                        <p class="text-gray-600">Last edited 2 hours ago</p>
+                                    </div>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="flex items-center space-x-2 p-3 bg-blue-50 rounded">
+                                            <span>💡</span>
+                                            <span class="text-gray-700">Type '/' for commands</span>
+                                        </div>
+                                        
+                                        <div class="space-y-3">
+                                            <h2 class="text-xl font-semibold">Meeting Notes</h2>
+                                            <p class="text-gray-700">
+                                                Notion menggunakan sistem block-based yang memungkinkan Anda menggabungkan teks, database, dan media dalam satu halaman.
+                                            </p>
+                                            
+                                            <div class="bg-gray-50 rounded p-4">
+                                                <h3 class="font-semibold mb-2">📋 To-Do List</h3>
+                                                <div class="space-y-2">
+                                                    <div class="flex items-center space-x-2">
+                                                        <input type="checkbox" checked class="rounded">
+                                                        <span class="line-through text-gray-500">Review project proposal</span>
+                                                    </div>
+                                                    <div class="flex items-center space-x-2">
+                                                        <input type="checkbox" class="rounded">
+                                                        <span>Update documentation</span>
+                                                    </div>
+                                                    <div class="flex items-center space-x-2">
+                                                        <input type="checkbox" class="rounded">
+                                                        <span>Schedule team meeting</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Kombinasi notes, docs, wiki</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Block-based editing</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Database dan template</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span class="text-gray-700">Kolaborasi tim</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded border">
+                            <p class="text-sm text-gray-600"><strong>Cocok untuk:</strong> Manajemen proyek, dokumentasi, knowledge base</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perbandingan -->
+                <div class="mt-8 bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">📊 Perbandingan Singkat</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b">
+                                    <th class="text-left py-2 px-4">Aplikasi</th>
+                                    <th class="text-center py-2 px-4">Harga</th>
+                                    <th class="text-center py-2 px-4">Platform</th>
+                                    <th class="text-center py-2 px-4">Kolaborasi</th>
+                                    <th class="text-center py-2 px-4">Offline</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 font-medium">Microsoft Word</td>
+                                    <td class="text-center py-2 px-4">💰 Berbayar</td>
+                                    <td class="text-center py-2 px-4">🖥️📱🌐</td>
+                                    <td class="text-center py-2 px-4">⭐⭐⭐</td>
+                                    <td class="text-center py-2 px-4">✅</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 font-medium">Google Docs</td>
+                                    <td class="text-center py-2 px-4">🆓 Gratis</td>
+                                    <td class="text-center py-2 px-4">🌐📱</td>
+                                    <td class="text-center py-2 px-4">⭐⭐⭐⭐⭐</td>
+                                    <td class="text-center py-2 px-4">⚠️ Terbatas</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4 font-medium">LibreOffice Writer</td>
+                                    <td class="text-center py-2 px-4">🆓 Gratis</td>
+                                    <td class="text-center py-2 px-4">🖥️</td>
+                                    <td class="text-center py-2 px-4">⭐⭐</td>
+                                    <td class="text-center py-2 px-4">✅</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 font-medium">Notion</td>
+                                    <td class="text-center py-2 px-4">🆓/💰 Freemium</td>
+                                    <td class="text-center py-2 px-4">🌐📱🖥️</td>
+                                    <td class="text-center py-2 px-4">⭐⭐⭐⭐</td>
+                                    <td class="text-center py-2 px-4">⚠️ Terbatas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman Kuis -->
+        <div id="page-kuis" class="page-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div id="quiz-start" class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">🎯 Kuis Aplikasi Pengolah Kata</h2>
+                    <div class="bg-blue-50 rounded-lg p-6 mb-6">
+                        <p class="text-lg text-gray-700 mb-4">Uji pemahaman Anda tentang aplikasi pengolah kata!</p>
+                        <div class="grid md:grid-cols-3 gap-4 text-center">
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl font-bold text-blue-600">10</div>
+                                <div class="text-sm text-gray-600">Soal</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl font-bold text-green-600">40</div>
+                                <div class="text-sm text-gray-600">Bank Soal</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-4">
+                                <div class="text-2xl font-bold text-purple-600">15</div>
+                                <div class="text-sm text-gray-600">Menit</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="startQuiz()" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
+                        🚀 Mulai Kuis
+                    </button>
+                </div>
+
+                <div id="quiz-content" class="hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="text-lg font-semibold text-gray-700">
+                            Soal <span id="current-question">1</span> dari <span id="total-questions">10</span>
+                        </div>
+                        <div class="text-lg font-semibold text-blue-600">
+                            ⏰ <span id="timer">15:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                        <h3 id="question-text" class="text-xl font-semibold text-gray-800 mb-4"></h3>
+                        <div id="options-container" class="space-y-3"></div>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button onclick="previousQuestion()" id="prev-btn" class="bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            ← Sebelumnya
+                        </button>
+                        <button onclick="nextQuestion()" id="next-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Selanjutnya →
+                        </button>
+                    </div>
+                </div>
+
+                <div id="quiz-result" class="hidden text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">🎉 Hasil Kuis</h2>
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 mb-6">
+                        <div class="text-6xl font-bold text-green-600 mb-4" id="final-score">0</div>
+                        <div class="text-xl text-gray-700 mb-4">dari 10 soal</div>
+                        <div class="text-lg" id="grade-message"></div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white rounded-lg p-4 border">
+                            <div class="text-2xl font-bold text-green-600" id="correct-count">0</div>
+                            <div class="text-gray-600">Jawaban Benar</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border">
+                            <div class="text-2xl font-bold text-red-600" id="wrong-count">0</div>
+                            <div class="text-gray-600">Jawaban Salah</div>
+                        </div>
+                    </div>
+                    <button onclick="restartQuiz()" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300">
+                        🔄 Ulangi Kuis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-300">© 2024 Pembelajaran Informatika SMK - Aplikasi Pengolah Kata</p>
+            <p class="text-gray-400 text-sm mt-2">Dibuat untuk mendukung pembelajaran siswa SMK</p>
+        </div>
+    </footer>
+
+    <script>
+        // Bank soal (40 soal)
+        const questionBank = [
+            {
+                question: "Apa kepanjangan dari WYSIWYG dalam konteks pengolah kata?",
+                options: ["What You See Is What You Get", "Where You Start Is Where You Go", "When You Save It Will Get", "Why You Should Include What's Good"],
+                correct: 0
+            },
+            {
+                question: "Aplikasi pengolah kata pertama yang populer untuk komputer personal adalah?",
+                options: ["Microsoft Word", "WordStar", "WordPerfect", "Google Docs"],
+                correct: 1
+            },
+            {
+                question: "Fitur yang memungkinkan beberapa orang mengedit dokumen secara bersamaan disebut?",
+                options: ["Multi-editing", "Collaborative editing", "Shared editing", "Team editing"],
+                correct: 1
+            },
+            {
+                question: "Format file default Microsoft Word 2019 adalah?",
+                options: [".doc", ".docx", ".rtf", ".txt"],
+                correct: 1
+            },
+            {
+                question: "Shortcut keyboard untuk menyalin teks adalah?",
+                options: ["Ctrl + X", "Ctrl + C", "Ctrl + V", "Ctrl + Z"],
+                correct: 1
+            },
+            {
+                question: "Fitur untuk mencari dan mengganti kata dalam dokumen disebut?",
+                options: ["Find & Replace", "Search & Change", "Locate & Substitute", "Hunt & Switch"],
+                correct: 0
+            },
+            {
+                question: "Aplikasi pengolah kata berbasis web yang dikembangkan oleh Google adalah?",
+                options: ["Google Writer", "Google Docs", "Google Text", "Google Document"],
+                correct: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan 'template' dalam aplikasi pengolah kata?",
+                options: ["File backup", "Format dokumen siap pakai", "Plugin tambahan", "Fitur auto-save"],
+                correct: 1
+            },
+            {
+                question: "LibreOffice Writer adalah contoh aplikasi pengolah kata yang bersifat?",
+                options: ["Berbayar", "Open source", "Trial version", "Premium only"],
+                correct: 1
+            },
+            {
+                question: "Fitur yang memungkinkan dokumen disimpan otomatis disebut?",
+                options: ["Auto-backup", "Auto-save", "Auto-sync", "Auto-store"],
+                correct: 1
+            },
+            {
+                question: "Ekstensi file yang umum digunakan untuk dokumen teks sederhana adalah?",
+                options: [".docx", ".pdf", ".txt", ".rtf"],
+                correct: 2
+            },
+            {
+                question: "Shortcut untuk membuat teks menjadi tebal (bold) adalah?",
+                options: ["Ctrl + I", "Ctrl + U", "Ctrl + B", "Ctrl + S"],
+                correct: 2
+            },
+            {
+                question: "Apa fungsi utama dari 'Page Break' dalam dokumen?",
+                options: ["Menghapus halaman", "Memulai halaman baru", "Mengatur margin", "Mengubah orientasi"],
+                correct: 1
+            },
+            {
+                question: "Format file yang dapat dibuka oleh hampir semua aplikasi pengolah kata adalah?",
+                options: [".docx", ".rtf", ".odt", ".pages"],
+                correct: 1
+            },
+            {
+                question: "Fitur 'Track Changes' berguna untuk?",
+                options: ["Mengubah font", "Melacak perubahan dokumen", "Mengatur spacing", "Menambah gambar"],
+                correct: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan 'margin' dalam dokumen?",
+                options: ["Jarak antar kata", "Jarak antar baris", "Jarak dari tepi kertas", "Jarak antar paragraf"],
+                correct: 2
+            },
+            {
+                question: "Aplikasi pengolah kata yang dikembangkan oleh Apple adalah?",
+                options: ["iWriter", "Pages", "TextEdit", "MacWord"],
+                correct: 1
+            },
+            {
+                question: "Fitur untuk membuat daftar isi otomatis memerlukan penggunaan?",
+                options: ["Bold text", "Heading styles", "Font size", "Text color"],
+                correct: 1
+            },
+            {
+                question: "Apa kepanjangan dari PDF?",
+                options: ["Portable Document Format", "Personal Document File", "Print Document Format", "Public Document File"],
+                correct: 0
+            },
+            {
+                question: "Shortcut untuk membatalkan aksi terakhir adalah?",
+                options: ["Ctrl + Y", "Ctrl + Z", "Ctrl + X", "Ctrl + R"],
+                correct: 1
+            },
+            {
+                question: "Fitur 'Mail Merge' digunakan untuk?",
+                options: ["Menggabungkan dokumen", "Mengirim email massal", "Membuat surat massal", "Mengatur layout"],
+                correct: 2
+            },
+            {
+                question: "Orientasi kertas yang lebih lebar dari tinggi disebut?",
+                options: ["Portrait", "Landscape", "Square", "Custom"],
+                correct: 1
+            },
+            {
+                question: "Apa fungsi dari 'Header' dalam dokumen?",
+                options: ["Judul dokumen", "Teks di bagian atas setiap halaman", "Font utama", "Paragraf pertama"],
+                correct: 1
+            },
+            {
+                question: "Format tabel yang dapat disisipkan dalam dokumen Word disimpan dalam format?",
+                options: ["Excel format", "Word table format", "CSV format", "Database format"],
+                correct: 1
+            },
+            {
+                question: "Fitur 'Spell Check' berfungsi untuk?",
+                options: ["Mengatur font", "Memeriksa ejaan", "Mengatur margin", "Menambah gambar"],
+                correct: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan 'line spacing'?",
+                options: ["Jarak antar kata", "Jarak antar huruf", "Jarak antar baris", "Jarak antar paragraf"],
+                correct: 2
+            },
+            {
+                question: "Aplikasi pengolah kata online yang memungkinkan kolaborasi real-time adalah?",
+                options: ["Microsoft Word Desktop", "Notepad", "Google Docs", "WordPad"],
+                correct: 2
+            },
+            {
+                question: "Fitur untuk mengatur posisi teks (kiri, tengah, kanan) disebut?",
+                options: ["Text alignment", "Text position", "Text location", "Text arrangement"],
+                correct: 0
+            },
+            {
+                question: "Apa fungsi dari 'Footer' dalam dokumen?",
+                options: ["Teks di bagian bawah setiap halaman", "Catatan kaki", "Referensi", "Daftar pustaka"],
+                correct: 0
+            },
+            {
+                question: "Format file yang dikembangkan oleh OpenDocument adalah?",
+                options: [".docx", ".odt", ".rtf", ".pdf"],
+                correct: 1
+            },
+            {
+                question: "Shortcut untuk mencetak dokumen adalah?",
+                options: ["Ctrl + S", "Ctrl + P", "Ctrl + O", "Ctrl + N"],
+                correct: 1
+            },
+            {
+                question: "Fitur 'Word Count' digunakan untuk?",
+                options: ["Menghitung halaman", "Menghitung kata", "Menghitung paragraf", "Menghitung karakter"],
+                correct: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan 'font family'?",
+                options: ["Ukuran huruf", "Jenis huruf", "Warna huruf", "Gaya huruf"],
+                correct: 1
+            },
+            {
+                question: "Fitur untuk membuat catatan kaki adalah?",
+                options: ["Endnote", "Footnote", "Comment", "Reference"],
+                correct: 1
+            },
+            {
+                question: "Aplikasi pengolah kata yang merupakan bagian dari WPS Office adalah?",
+                options: ["WPS Writer", "WPS Text", "WPS Document", "WPS Word"],
+                correct: 0
+            },
+            {
+                question: "Apa fungsi dari 'Page Number'?",
+                options: ["Menghitung halaman", "Menampilkan nomor halaman", "Mengatur halaman", "Menghapus halaman"],
+                correct: 1
+            },
+            {
+                question: "Format file yang kompatibel dengan semua versi Microsoft Word adalah?",
+                options: [".docx", ".doc", ".rtf", ".txt"],
+                correct: 2
+            },
+            {
+                question: "Fitur untuk mengatur jarak antar paragraf adalah?",
+                options: ["Line spacing", "Paragraph spacing", "Word spacing", "Character spacing"],
+                correct: 1
+            },
+            {
+                question: "Apa yang dimaksud dengan 'clipboard' dalam konteks pengolah kata?",
+                options: ["Tempat menyimpan file", "Tempat menyimpan teks yang disalin", "Tempat menyimpan gambar", "Tempat menyimpan template"],
+                correct: 1
+            },
+            {
+                question: "Aplikasi pengolah kata yang dapat digunakan secara offline dan online adalah?",
+                options: ["Google Docs", "Microsoft Word", "LibreOffice Writer", "Notion"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let timer;
+        let timeLeft = 900; // 15 menit dalam detik
+
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            
+            // Show selected page
+            document.getElementById(`page-${page}`).classList.remove('hidden');
+            document.getElementById(`page-${page}`).classList.add('fade-in');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('text-blue-600', 'hover:bg-blue-50');
+            });
+            
+            document.getElementById(`btn-${page}`).classList.add('bg-blue-600', 'text-white');
+            document.getElementById(`btn-${page}`).classList.remove('text-blue-600', 'hover:bg-blue-50');
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function startQuiz() {
+            // Pilih 10 soal acak dari 40 soal
+            const shuffledQuestions = shuffleArray(questionBank);
+            currentQuestions = shuffledQuestions.slice(0, 10);
+            
+            currentQuestionIndex = 0;
+            userAnswers = new Array(10).fill(-1);
+            timeLeft = 900;
+            
+            document.getElementById('quiz-start').classList.add('hidden');
+            document.getElementById('quiz-content').classList.remove('hidden');
+            
+            startTimer();
+            displayQuestion();
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function displayQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = `quiz-option p-4 bg-white border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+                    userAnswers[currentQuestionIndex] === index ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'
+                }`;
+                
+                optionDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="answer" value="${index}" class="mr-3" ${
+                            userAnswers[currentQuestionIndex] === index ? 'checked' : ''
+                        }>
+                        <span class="text-gray-700">${option}</span>
+                    </label>
+                `;
+                
+                optionDiv.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').textContent = 
+                currentQuestionIndex === 9 ? 'Selesai' : 'Selanjutnya →';
+        }
+
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestionIndex] = answerIndex;
+            
+            // Update visual feedback
+            document.querySelectorAll('.quiz-option').forEach((option, index) => {
+                if (index === answerIndex) {
+                    option.classList.add('border-blue-500', 'bg-blue-50');
+                    option.classList.remove('border-gray-200');
+                } else {
+                    option.classList.remove('border-blue-500', 'bg-blue-50');
+                    option.classList.add('border-gray-200');
+                }
+            });
+            
+            // Check radio button
+            document.querySelector(`input[value="${answerIndex}"]`).checked = true;
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < 9) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(timer);
+            
+            // Calculate score
+            let correctAnswers = 0;
+            for (let i = 0; i < currentQuestions.length; i++) {
+                if (userAnswers[i] === currentQuestions[i].correct) {
+                    correctAnswers++;
+                }
+            }
+            
+            // Show results
+            document.getElementById('quiz-content').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            document.getElementById('final-score').textContent = correctAnswers;
+            document.getElementById('correct-count').textContent = correctAnswers;
+            document.getElementById('wrong-count').textContent = 10 - correctAnswers;
+            
+            // Grade message
+            let gradeMessage = '';
+            let gradeClass = '';
+            
+            if (correctAnswers >= 9) {
+                gradeMessage = '🏆 Luar Biasa! Anda menguasai materi dengan sangat baik!';
+                gradeClass = 'text-green-600';
+            } else if (correctAnswers >= 7) {
+                gradeMessage = '🎉 Bagus! Pemahaman Anda sudah cukup baik!';
+                gradeClass = 'text-blue-600';
+            } else if (correctAnswers >= 5) {
+                gradeMessage = '👍 Cukup baik, tapi masih perlu belajar lagi!';
+                gradeClass = 'text-yellow-600';
+            } else {
+                gradeMessage = '📚 Perlu belajar lebih giat lagi!';
+                gradeClass = 'text-red-600';
+            }
+            
+            const gradeElement = document.getElementById('grade-message');
+            gradeElement.textContent = gradeMessage;
+            gradeElement.className = `text-lg font-semibold ${gradeClass}`;
+        }
+
+        function restartQuiz() {
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-start').classList.remove('hidden');
+        }
+
+        // Initialize page
+        showPage('materi');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f5a0d5a4ab14a6',t:'MTc1NTIyODc4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
